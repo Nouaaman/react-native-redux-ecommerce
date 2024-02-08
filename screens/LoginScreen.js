@@ -1,4 +1,11 @@
-import { View, Text, Image, TextInput, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  Touchable,
+} from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
@@ -9,13 +16,14 @@ import {
 } from "react-native-heroicons/solid";
 import { useNavigation } from "@react-navigation/native";
 
-export default function SignUpScreen() {
+export default LoginScreen = () => {
   const navigation = useNavigation();
+
   return (
     <View className="flex-1 justify-start items-center p-4 ">
       <SafeAreaView className="absolute z-20 w-full flex-row justify-between items-center px-4 py-2 ">
         <TouchableOpacity
-          className="rounded-xl p-2 bg-orange-500 "
+          className="rounded-2xl p-2 bg-orange-500 "
           onPress={() => navigation.navigate('Home')}
         >
           <ChevronLeftIcon size="28" strokeWidth={3} color="white" />
@@ -23,7 +31,7 @@ export default function SignUpScreen() {
       </SafeAreaView>
 
       <View className=" flex-1 w-full justify-start items-center mt-12">
-        <Text className="text-3xl font-bold">Sign Up</Text>
+        <Text className="text-3xl font-bold ">Login</Text>
         {/* Inputs */}
         <View className=" flex-1 justify-center">
           {/* email */}
@@ -39,49 +47,36 @@ export default function SignUpScreen() {
             />
           </View>
 
-          {/* username */}
-          <View className=" relative flex flex-row justify-stretch items-center w-full mb-2">
-            <View className="absolute left-4">
-              <UserIcon size="25" color={"gray"} />
-            </View>
-            <TextInput
-              className="w-full pl-12  border border-orange-500 text-lg h-12 rounded-xl "
-              placeholder="Username"
-              textContentType="username"
-              autoCapitalize="none"
-            />
-          </View>
-
           {/* password */}
           <View className=" relative flex flex-row justify-stretch items-center w-full mb-2">
             <View className="absolute left-4">
               <LockClosedIcon size="25" color={"gray"} />
             </View>
             <TextInput
-              className="w-full pl-12  border border-orange-400 text-lg h-12 rounded-xl"
+              className="w-full pl-12  border border-orange-400 text-lg h-12 rounded-xl "
               placeholder="Password"
               textContentType="password"
               secureTextEntry
               autoCapitalize="none"
             />
           </View>
-          {/* singup button */}
+          {/* login button */}
           <TouchableOpacity
             className=" mt-10 flex justify-center items-center "
             onPress={() => {}}
           >
             <Text className=" w-full py-3 bg-orange-500  rounded-full justify-center items-center text-white text-lg font-bold text-center">
-              Sign Up
+              Login
             </Text>
           </TouchableOpacity>
           <View className="mt-8 text-center flex flex-row justify-center align-center">
-            <Text> Already have an account?</Text>
+            <Text> Dont you have and account?</Text>
             <TouchableOpacity>
               <Text
                 className="text-orange-500"
-                onPress={() => navigation.navigate("Login")}
+                onPress={() => navigation.navigate("SignUp")}
               >
-                Login
+                Sign Up
               </Text>
             </TouchableOpacity>
           </View>
@@ -94,4 +89,4 @@ export default function SignUpScreen() {
       />
     </View>
   );
-}
+};
