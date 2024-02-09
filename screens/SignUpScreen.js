@@ -13,7 +13,7 @@ export default function SignUpScreen() {
   const navigation = useNavigation();
   return (
     <View className="flex-1 justify-start items-center p-4 ">
-      <SafeAreaView className="absolute z-20 w-full flex-row justify-between items-center px-4 py-2 ">
+      <SafeAreaView className="absolute z-20 w-full flex-row justify-between items-center py-2 ">
         <TouchableOpacity
           className="rounded-xl p-2 bg-orange-500 "
           onPress={() => navigation.navigate('Home')}
