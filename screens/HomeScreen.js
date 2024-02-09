@@ -112,8 +112,8 @@ export default function HomeScreen() {
       </ScrollView>
 
       {/* test nav */}
-      {/* }
-      <View>
+      
+      <View className="flex-row">
         <Button
           title="login"
           onPress={() => {
@@ -127,7 +127,7 @@ export default function HomeScreen() {
           }}
         />
       </View>
-       */}
+      
     </View>
   );
 }
