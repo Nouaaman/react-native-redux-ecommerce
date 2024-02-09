@@ -5,12 +5,14 @@ import {
   Image,
   Button,
   FlatList,
+  ScrollView,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import React, { useState } from "react";
 import { MagnifyingGlassIcon } from "react-native-heroicons/outline";
-import { ShoppingCartIcon } from "react-native-heroicons/solid";
+import { ShoppingBagIcon } from "react-native-heroicons/solid";
 import { useNavigation } from "@react-navigation/native";
+import ProductCard from "../components/ProductCard";
 
 export default function HomeScreen() {
   const navigation = useNavigation();
@@ -23,13 +25,19 @@ export default function HomeScreen() {
     { id: 4, name: "Jewelry" },
     { id: 5, name: "Fragrances" },
   ]);
-  const [activeCategory, setActiveCategory] = useState(1);
+  const [activeCategory, setActiveCategory] = useState(0);
 
-  const renderCategoryItem = ({ item }) => (
-    <TouchableOpacity>
-      <Text>{item.name}</Text>
-    </TouchableOpacity>
-  );
+  const product = {
+    id: 1,
+    title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+    price: 109.95,
+    description:
+      "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+    category: "men's clothing",
+    image:
+      "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
+    rating: { rate: 3.9, count: 120 },
+  };
 
   return (
     <View className="flex-1 bg-neutral-100">
@@ -40,30 +48,28 @@ export default function HomeScreen() {
               source={require("../assets/logo-small.png")}
               className="w-10 h-10"
             />
-            <Text className="text-2xl font-bold color-neutral-700">
+            <Text className="text-2xl font-bold color-neutral-600">
               Senmart
             </Text>
           </View>
           {/* cart and search buttons */}
           <View className="flex-row justify-between items-center gap-4">
             <TouchableOpacity onPress={() => navigation.navigate("Search")}>
-              <MagnifyingGlassIcon size="30" strokeWidth={2} color="#333" />
+              <MagnifyingGlassIcon size="30" strokeWidth={2} color="#555" />
             </TouchableOpacity>
             <TouchableOpacity
               className="flex-row justify-center items-start"
               onPress={() => navigation.navigate("Cart")}
             >
-              <ShoppingCartIcon size="30" color={"#333"} />
-              <Text className=" text-xs font-bold color-orange-700">
-                {cartTotal}
-              </Text>
+              <ShoppingBagIcon size="30" color={"#555"} />
+              <Text className=" text-xs font-semibold">{cartTotal}</Text>
             </TouchableOpacity>
           </View>
         </View>
       </SafeAreaView>
 
       {/* categories */}
-      <View className="px-4 mt-6">
+      <View className="px-4 mt-4">
         <FlatList
           data={categories}
           horizontal
@@ -91,7 +97,22 @@ export default function HomeScreen() {
         />
       </View>
 
+      {/* products */}
+      <ScrollView className="mt-4">
+        <View className="px-4">
+          <Text className="text-lg font-semibold">Featured products</Text>
+        </View>
+        <View className="flex-row justify-around flex-wrap px-4 mt-4">
+          <ProductCard product={product} />
+          <ProductCard product={product} />
+          <ProductCard product={product} />
+          <ProductCard product={product} />
+          <ProductCard product={product} />
+        </View>
+      </ScrollView>
+
       {/* test nav */}
+      {/* }
       <View>
         <Button
           title="login"
@@ -106,6 +127,7 @@ export default function HomeScreen() {
           }}
         />
       </View>
+       */}
     </View>
   );
 }
