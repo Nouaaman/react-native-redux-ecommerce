@@ -13,7 +13,11 @@ const { width } = Dimensions.get("window");
 export default function ProductCard({ product }) {
   const navigation = useNavigation();
   return (
-    <TouchableWithoutFeedback onPress={()=>{navigation.navigate('Product')}}>
+    <TouchableWithoutFeedback
+      onPress={() => {
+        navigation.navigate("Product", { ...product });
+      }}
+    >
       <View
         className=" bg-white rounded-xl shadow-lg mb-4 pt-2"
         style={{ width: width / 2 - 30 }}
