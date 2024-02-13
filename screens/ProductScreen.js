@@ -1,4 +1,12 @@
-import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+  Modal,
+  Pressable,
+} from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
@@ -7,12 +15,14 @@ import {
   MinusIcon,
   PlusIcon,
 } from "react-native-heroicons/outline";
-import { HeartIcon, StarIcon } from "react-native-heroicons/solid";
+import { HeartIcon, ShoppingBagIcon, StarIcon } from "react-native-heroicons/solid";
 import { StatusBar } from "expo-status-bar";
+
 export default function ProductScreen(props) {
   const product = props.route.params;
   const navigation = useNavigation();
 
+  const [showModal, setShowModal] = useState(false);
   const [size, setSize] = useState("s");
   const [quantity, setQuantity] = useState(1);
 
@@ -39,12 +49,33 @@ export default function ProductScreen(props) {
             shadowOpacity: 0.1,
           }}
         >
-          <Image
-            source={{ uri: product.image }}
-            className="w-full"
-            style={{ height: 300 }}
-          />
+          <TouchableOpacity onPress={() => setShowModal(true)}>
+            <Image
+              source={{ uri: product.image }}
+              className="w-full"
+              style={{ height: 300 }}
+            />
+          </TouchableOpacity>
         </View>
+        {/* show image fullscreen in modal */}
+        <Modal
+          visible={showModal}
+          transparent
+          animationType="fade"
+          onRequestClose={() => setShowModal(false)}
+        >
+          <Pressable
+            onPress={() => setShowModal(false)}
+            className="flex-1 bg-black/90 justify-center items-center"
+          >
+            <Image
+              source={{ uri: product.image }}
+              className="w-full h-full"
+              resizeMode="contain"
+            />
+          </Pressable>
+        </Modal>
+        {/*  */}
         <SafeAreaView className="absolute px-4 w-full flex-row justify-between items-center py-2 ">
           <TouchableOpacity
             className="rounded-xl p-2 bg-orange-500 "
@@ -67,7 +98,9 @@ export default function ProductScreen(props) {
 
         <View className="mt-4 mx-4 flex-row justify-between items-start space-x-4">
           <Text className="flex-1 text-xl ">{product.title}</Text>
-          <Text className="flex-2 text-lg font-semibold">$ {product.price}</Text>
+          <Text className="flex-2 text-lg font-semibold">
+            $ {product.price}
+          </Text>
         </View>
 
         <View className="px-4 space-y-2 mt-4">
@@ -158,7 +191,10 @@ export default function ProductScreen(props) {
           shadowRadius: 8,
         }}
       >
-        <PlusIcon size="30" strokeWidth={3} color="white" />
+        <ShoppingBagIcon size="40" strokeWidth={2} color="white" />
+        <View className="absolute bottom-2 right-3 rounded-full bg-orange-500 ">
+          <PlusIcon size="25" strokeWidth={3} color="white" />
+        </View>
       </TouchableOpacity>
     </View>
   );
