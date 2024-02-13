@@ -183,7 +183,7 @@ export default function ProductScreen(props) {
 
       {/* add to cart */}
       <TouchableOpacity
-        className="absolute right-4 bottom-4 rounded-full flex justify-center items-center self-start p-4 bg-orange-500"
+        className="absolute right-4 bottom-4 rounded-full flex justify-center items-center self-start p-5 bg-orange-500"
         onPress={() => {}}
         style={{
           shadowOffset: { width: 0, height: 8 },
@@ -191,9 +191,9 @@ export default function ProductScreen(props) {
           shadowRadius: 8,
         }}
       >
-        <ShoppingBagIcon size="40" strokeWidth={2} color="white" />
-        <View className="absolute bottom-2 right-3 rounded-full bg-orange-500 ">
-          <PlusIcon size="25" strokeWidth={3} color="white" />
+        <ShoppingBagIcon size="30" strokeWidth={2} color="white" />
+        <View className="absolute bottom-3 right-4 rounded-full bg-orange-500 ">
+          <PlusIcon size="20" strokeWidth={3} color="white" />
         </View>
       </TouchableOpacity>
     </View>
