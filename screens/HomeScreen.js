@@ -31,7 +31,7 @@ export default function HomeScreen() {
   const [products] = useState(DummyProducts);
 
   return (
-    <View className="flex-1 bg-neutral-100">
+    <View className="flex-1 bg-neutral-50">
       <SafeAreaView>
         <View className="flex-row justify-between items-center mt-2 px-4">
           <View className="flex-row justify-center items-end gap-1">
@@ -60,7 +60,7 @@ export default function HomeScreen() {
       </SafeAreaView>
 
       {/* categories */}
-      <View className="px-4 mt-4">
+      <View className="px-4 mt-2">
         <FlatList
           data={categories}
           horizontal
@@ -89,7 +89,7 @@ export default function HomeScreen() {
       </View>
 
       {/* products */}
-      <ScrollView className="mt-4">
+      <ScrollView className="mt-2">
         <View className="px-4">
           <Text className="text-lg font-semibold">Featured products</Text>
         </View>

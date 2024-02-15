@@ -38,7 +38,7 @@ export default function ProductScreen(props) {
   };
 
   return (
-    <View className="flex-1">
+    <View className="flex-1 bg-gray-50">
       <ScrollView
         className="flex-1 "
         contentContainerStyle={{ paddingBottom: 100 }}
@@ -56,7 +56,7 @@ export default function ProductScreen(props) {
             <Image
               source={{ uri: product.image }}
               className="w-full"
-              style={{ height: 380 }}
+              style={{ height: 350 }}
             />
           </TouchableOpacity>
         </View>
@@ -69,7 +69,7 @@ export default function ProductScreen(props) {
         >
           <Pressable
             onPress={() => setShowModal(false)}
-            className="flex-1 bg-black/90 justify-center items-center"
+            className="flex-1 bg-black/80 justify-center items-center"
           >
             <Image
               source={{ uri: product.image }}
@@ -86,8 +86,8 @@ export default function ProductScreen(props) {
           >
             <ChevronLeftIcon size="28" strokeWidth={3} color="white" />
           </TouchableOpacity>
-          <TouchableOpacity className="rounded-full p-2 border-2 border-gray-400 ">
-            <HeartIcon size="24" strokeWidth={2} color="#aaa" />
+          <TouchableOpacity className="rounded-full p-2  bg-black/50 ">
+            <HeartIcon size="24" strokeWidth={2} color="#bbb" />
           </TouchableOpacity>
         </SafeAreaView>
 
@@ -100,7 +100,7 @@ export default function ProductScreen(props) {
 
         <View className="px-4 space-y-2 mt-4">
           <Text className="text-lg font-bold">Size</Text>
-          <View className="flex-row flex-wrap justify-around">
+          <View className="flex-row flex-wrap justify-evenly">
             <TouchableOpacity
               onPress={() => setSize("s")}
               style={{
@@ -154,7 +154,7 @@ export default function ProductScreen(props) {
 
         {/* quantity */}
 
-        <View className="px-4 mt-6 ">
+        <View className="px-4 mt-4 ">
           <Text className="text-lg font-bold">Quantity</Text>
           <View className="flex-row  self-center items-center space-x-8 border-gray-300 border rounded-full p-1 px-4">
             <TouchableOpacity onPress={handleMinusBtn} className="p-1">
@@ -168,7 +168,7 @@ export default function ProductScreen(props) {
         </View>
 
         {/* description */}
-        <View className="px-4 mt-6">
+        <View className="px-4 mt-4">
           <Text className="text-lg font-bold">Description</Text>
           <Text className="text-gray-700 mt-2">{product.description}</Text>
         </View>
