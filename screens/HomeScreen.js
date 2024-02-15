@@ -13,6 +13,7 @@ import { MagnifyingGlassIcon } from "react-native-heroicons/outline";
 import { ShoppingBagIcon } from "react-native-heroicons/solid";
 import { useNavigation } from "@react-navigation/native";
 import ProductCard from "../components/ProductCard";
+import { DummyProducts } from "../constants/DummyData";
 
 export default function HomeScreen() {
   const navigation = useNavigation();
@@ -27,17 +28,7 @@ export default function HomeScreen() {
   ]);
   const [activeCategory, setActiveCategory] = useState(0);
 
-  const product = {
-    id: 1,
-    title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-    price: 109.95,
-    description:
-      "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-    category: "men's clothing",
-    image:
-      "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
-    rating: { rate: 3.9, count: 120 },
-  };
+  const [products] = useState(DummyProducts);
 
   return (
     <View className="flex-1 bg-neutral-100">
@@ -103,16 +94,14 @@ export default function HomeScreen() {
           <Text className="text-lg font-semibold">Featured products</Text>
         </View>
         <View className="flex-row justify-around flex-wrap px-4 mt-4">
-          <ProductCard product={product} />
-          <ProductCard product={product} />
-          <ProductCard product={product} />
-          <ProductCard product={product} />
-          <ProductCard product={product} />
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
         </View>
       </ScrollView>
 
       {/* test nav */}
-      
+
       <View className="flex-row">
         <Button
           title="login"
@@ -127,7 +116,6 @@ export default function HomeScreen() {
           }}
         />
       </View>
-      
     </View>
   );
 }

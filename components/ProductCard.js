@@ -19,7 +19,7 @@ export default function ProductCard({ product }) {
       }}
     >
       <View
-        className=" bg-white rounded-xl shadow-lg mb-4 pt-2"
+        className=" bg-white rounded-xl shadow-lg mb-4 "
         style={{ width: width / 2 - 30 }}
       >
         <Image

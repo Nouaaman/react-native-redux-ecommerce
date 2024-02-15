@@ -15,8 +15,10 @@ import {
   MinusIcon,
   PlusIcon,
 } from "react-native-heroicons/outline";
-import { HeartIcon, ShoppingBagIcon, StarIcon } from "react-native-heroicons/solid";
+import { HeartIcon, ShoppingBagIcon } from "react-native-heroicons/solid";
 import { StatusBar } from "expo-status-bar";
+import Reviews from "../components/Reviews";
+import { DummyReviews } from "../constants/DummyData";
 
 export default function ProductScreen(props) {
   const product = props.route.params;
@@ -25,6 +27,7 @@ export default function ProductScreen(props) {
   const [showModal, setShowModal] = useState(false);
   const [size, setSize] = useState("s");
   const [quantity, setQuantity] = useState(1);
+  const [reviews] = useState(DummyReviews);
 
   const handleMinusBtn = () => {
     if (quantity > 1) setQuantity(quantity - 1);
@@ -53,7 +56,7 @@ export default function ProductScreen(props) {
             <Image
               source={{ uri: product.image }}
               className="w-full"
-              style={{ height: 300 }}
+              style={{ height: 380 }}
             />
           </TouchableOpacity>
         </View>
@@ -88,14 +91,6 @@ export default function ProductScreen(props) {
           </TouchableOpacity>
         </SafeAreaView>
 
-        {/* details */}
-        {/* <View className="flex-row items-center bg-orange-300 rounded-3xl self-start py-1 px-2 m-4 ">
-          <StarIcon size={16} color="white" />
-          <Text className="text-white font-semibold ml-1 text-base">
-            {product.rating.rate}
-          </Text>
-        </View> */}
-
         <View className="mt-4 mx-4 flex-row justify-between items-start space-x-4">
           <Text className="flex-1 text-xl ">{product.title}</Text>
           <Text className="flex-2 text-lg font-semibold">
@@ -114,7 +109,11 @@ export default function ProductScreen(props) {
               }}
               className="p-3 px-8 rounded-full"
             >
-              <Text className={size == "s" ? "text-white" : "text-gray-700"}>
+              <Text
+                className={`font-semibold  ${
+                  size == "s" ? "text-white" : "text-gray-700"
+                }`}
+              >
                 S
               </Text>
             </TouchableOpacity>
@@ -126,7 +125,11 @@ export default function ProductScreen(props) {
               }}
               className="p-3 px-8 rounded-full"
             >
-              <Text className={size == "m" ? "text-white" : "text-gray-700"}>
+              <Text
+                className={`font-semibold  ${
+                  size == "m" ? "text-white" : "text-gray-700"
+                }`}
+              >
                 M
               </Text>
             </TouchableOpacity>
@@ -138,7 +141,11 @@ export default function ProductScreen(props) {
               }}
               className="p-3 px-8 rounded-full"
             >
-              <Text className={size == "l" ? "text-white" : "text-gray-700"}>
+              <Text
+                className={`font-semibold  ${
+                  size == "l" ? "text-white" : "text-gray-700"
+                }`}
+              >
                 L
               </Text>
             </TouchableOpacity>
@@ -169,15 +176,7 @@ export default function ProductScreen(props) {
         {/* reviews */}
         <View className="px-4 mt-6">
           <Text className="text-lg font-bold">Reviews</Text>
-          <View className="flex-row items-center mt-2">
-            <StarIcon size={16} color="orange" />
-            <Text className="text-lg font-bold ml-1">4.5</Text>
-            <Text className="ml-1">(24 reviews)</Text>
-          </View>
-          <Text className="text-gray-700 mt-2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </Text>
+          <Reviews reviews={reviews} />
         </View>
       </ScrollView>
 
