@@ -29,7 +29,11 @@ export default function HomeScreen() {
       <SafeAreaView>
         <View className="flex-row justify-between items-center mt-2 px-4">
           <View className="flex-row justify-center items-end gap-2">
-            <TouchableOpacity onPress={navigation.openDrawer()}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.openDrawer();
+              }}
+            >
               <Bars3Icon size="35" strokeWidth={2} color="#555" />
             </TouchableOpacity>
             <Image
@@ -68,23 +72,6 @@ export default function HomeScreen() {
           ))}
         </View>
       </ScrollView>
-
-      {/* test nav */}
-
-      <View className="flex-row">
-        <Button
-          title="login"
-          onPress={() => {
-            navigation.navigate("Login");
-          }}
-        />
-        <Button
-          title="sign up"
-          onPress={() => {
-            navigation.navigate("SignUp");
-          }}
-        />
-      </View>
     </View>
   );
 }

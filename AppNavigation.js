@@ -9,14 +9,33 @@ import LoginScreen from "./screens/LoginScreen";
 import SearchScreen from "./screens/SearchScreen";
 import CartScreen from "./screens/CartScreen";
 import ProductScreen from "./screens/ProductScreen";
-
+import CustomDawer from "./components/CustomDrawer";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
-const DrawerHome = () => (
-  <Drawer.Navigator  screenOptions={{ headerShown: false }}>
-    <Drawer.Screen name="HomeDrawer" component={HomeScreen} />
+const DrawerNavigation = () => (
+  <Drawer.Navigator
+    drawerContent={(props) => <CustomDawer {...props} />}
+    screenOptions={{
+      headerShown: false,
+      drawerType: "front",
+      drawerStyle: {
+        width: "80%",
+      },
+      drawerLabelStyle: {
+        color: "black",
+        fontSize: 16,
+        fontWeight: "500",
+      },
+    }}
+  >
+    <Drawer.Screen
+      name="HomeDrawer"
+      component={HomeScreen}
+      options={{ title: "Home" }}
+    />
+     
     {/* <Drawer.Screen name="Settings" component={Settings} /> */}
   </Drawer.Navigator>
 );
@@ -25,7 +44,7 @@ export default function AppNavigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Home" component={DrawerHome} />
+        <Stack.Screen name="Home" component={DrawerNavigation} />
         <Stack.Screen name="Search" component={SearchScreen} />
         <Stack.Screen
           name="Cart"
