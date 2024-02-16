@@ -25,7 +25,7 @@ export default function ProductScreen(props) {
   const navigation = useNavigation();
 
   const [showModal, setShowModal] = useState(false);
-  const [size, setSize] = useState("s");
+  const [size, setSize] = useState("S");
   const [quantity, setQuantity] = useState(1);
   const [reviews] = useState(DummyReviews);
 
@@ -78,10 +78,10 @@ export default function ProductScreen(props) {
             />
           </Pressable>
         </Modal>
-        {/*  */}
+        {/*  back and favorite button */}
         <SafeAreaView className="absolute px-4 w-full flex-row justify-between items-center py-2 ">
           <TouchableOpacity
-            className="rounded-xl p-2 bg-orange-500 "
+            className="rounded-full p-2  bg-black/50 "
             onPress={() => navigation.goBack()}
           >
             <ChevronLeftIcon size="28" strokeWidth={3} color="white" />
@@ -102,48 +102,48 @@ export default function ProductScreen(props) {
           <Text className="text-lg font-bold">Size</Text>
           <View className="flex-row flex-wrap justify-evenly">
             <TouchableOpacity
-              onPress={() => setSize("s")}
+              onPress={() => setSize("S")}
               style={{
                 backgroundColor:
-                  size == "s" ? "rgb(249 115 22)" : "rgba(0,0,0,0.07)",
+                  size == "S" ? "rgb(249 115 22)" : "rgba(0,0,0,0.07)",
               }}
               className="p-3 px-8 rounded-full"
             >
               <Text
                 className={`font-semibold  ${
-                  size == "s" ? "text-white" : "text-gray-700"
+                  size == "S" ? "text-white" : "text-gray-700"
                 }`}
               >
                 S
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => setSize("m")}
+              onPress={() => setSize("M")}
               style={{
                 backgroundColor:
-                  size == "m" ? "rgb(249 115 22)" : "rgba(0,0,0,0.07)",
+                  size == "M" ? "rgb(249 115 22)" : "rgba(0,0,0,0.07)",
               }}
               className="p-3 px-8 rounded-full"
             >
               <Text
                 className={`font-semibold  ${
-                  size == "m" ? "text-white" : "text-gray-700"
+                  size == "M" ? "text-white" : "text-gray-700"
                 }`}
               >
                 M
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => setSize("l")}
+              onPress={() => setSize("L")}
               style={{
                 backgroundColor:
-                  size == "l" ? "rgb(249 115 22)" : "rgba(0,0,0,0.07)",
+                  size == "L" ? "rgb(249 115 22)" : "rgba(0,0,0,0.07)",
               }}
               className="p-3 px-8 rounded-full"
             >
               <Text
                 className={`font-semibold  ${
-                  size == "l" ? "text-white" : "text-gray-700"
+                  size == "L" ? "text-white" : "text-gray-700"
                 }`}
               >
                 L

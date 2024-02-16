@@ -12,8 +12,9 @@ import {
   EnvelopeIcon,
   UserIcon,
   LockClosedIcon,
-  ChevronLeftIcon,
 } from "react-native-heroicons/solid";
+import { ChevronLeftIcon } from "react-native-heroicons/outline";
+
 import { useNavigation } from "@react-navigation/native";
 
 export default LoginScreen = () => {
@@ -23,8 +24,8 @@ export default LoginScreen = () => {
     <View className="flex-1 justify-start items-center p-4 ">
       <SafeAreaView className="absolute z-20 w-full flex-row justify-between items-center py-2 ">
         <TouchableOpacity
-          className="rounded-2xl p-2 bg-orange-500 "
-          onPress={() => navigation.navigate('Home')}
+          className="rounded-full p-2 bg-orange-500 "
+          onPress={() => navigation.navigate("Home")}
         >
           <ChevronLeftIcon size="28" strokeWidth={3} color="white" />
         </TouchableOpacity>
