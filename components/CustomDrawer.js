@@ -16,7 +16,6 @@ import {
 export default function CustomDawer(props) {
   const navigation = useNavigation();
 
-  console.log(props);
   return (
     <View className="flex-1">
       <View className=" flex-row items-end p-4 pt-8 space-x-2 border-b-2 border-gray-100 ">
@@ -47,7 +46,7 @@ export default function CustomDawer(props) {
           {/*  */}
           <TouchableOpacity
             className="flex-row items-center p-4 py-2 space-x-2"
-            onPress={() => navigation.navigate("Search")}
+            onPress={() => navigation.navigate("Cart")}
           >
             <ShoppingBagIcon size="25"  color={"black"} />
             <Text className="text-lg ">Cart</Text>
