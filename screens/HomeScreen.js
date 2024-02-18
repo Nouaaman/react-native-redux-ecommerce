@@ -13,16 +13,16 @@ import { Bars3Icon, MagnifyingGlassIcon } from "react-native-heroicons/outline";
 import { ShoppingBagIcon } from "react-native-heroicons/solid";
 import { useNavigation } from "@react-navigation/native";
 import ProductCard from "../components/ProductCard";
-import { DummyProducts } from "../constants/DummyData";
+import { DummyCart, DummyProducts } from "../constants/DummyData";
 import Categories from "../components/Categories";
-import { DrawerContext } from "../context/DrawerContext";
 
 export default function HomeScreen() {
   const navigation = useNavigation();
 
-  const [cartTotal, setCartTotal] = useState(2);
   const [products] = useState(DummyProducts);
-  const { openDrawer } = useContext(DrawerContext);
+  const [cart, setCart] = useState(DummyCart);
+
+
 
   return (
     <View className="flex-1 bg-neutral-50">
@@ -52,7 +52,9 @@ export default function HomeScreen() {
               onPress={() => navigation.navigate("Cart")}
             >
               <ShoppingBagIcon size="30" color={"#555"} />
-              <Text className=" text-xs font-semibold">{cartTotal}</Text>
+              <Text className=" text-sm font-semibold">
+                {cart.products.length}
+              </Text>
             </TouchableOpacity>
           </View>
         </View>

@@ -12,9 +12,9 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <DrawerContextProvider>
+    <>
       <StatusBar style="auto" />
       <AppNavigation />
-    </DrawerContextProvider>
+    </>
   );
 }

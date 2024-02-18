@@ -1,3 +1,7 @@
+/********************************
+ * NOT USED IN THE PROJECT
+*********************************/
+
 import React, { createContext, useState } from "react";
 export const DrawerContext = createContext();
 
