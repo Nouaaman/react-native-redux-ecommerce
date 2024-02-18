@@ -7,6 +7,7 @@ import {
 
 import { useNavigation } from "@react-navigation/native";
 import {
+  ArrowRightStartOnRectangleIcon,
   HomeIcon,
   LockOpenIcon,
   MagnifyingGlassIcon,
@@ -15,7 +16,7 @@ import {
 
 export default function CustomDawer(props) {
   const navigation = useNavigation();
-
+  const [isSignedIn, setSignedIn] = React.useState(false);
   return (
     <View className="flex-1">
       <View className=" flex-row items-end p-4 pt-8 space-x-2 border-b-2 border-gray-100 ">
@@ -32,7 +33,7 @@ export default function CustomDawer(props) {
             className="flex-row items-center px-4 py-2 space-x-2 "
             onPress={() => navigation.navigate("Home")}
           >
-            <HomeIcon size="25"  color={"black"} />
+            <HomeIcon size="25" color={"black"} />
             <Text className="text-lg ">Home</Text>
           </TouchableOpacity>
           {/*  */}
@@ -40,7 +41,7 @@ export default function CustomDawer(props) {
             className="flex-row items-center p-4 py-2 space-x-2"
             onPress={() => navigation.navigate("Search")}
           >
-            <MagnifyingGlassIcon size="25"  color={"black"} />
+            <MagnifyingGlassIcon size="25" color={"black"} />
             <Text className="text-lg ">Search</Text>
           </TouchableOpacity>
           {/*  */}
@@ -48,25 +49,44 @@ export default function CustomDawer(props) {
             className="flex-row items-center p-4 py-2 space-x-2"
             onPress={() => navigation.navigate("Cart")}
           >
-            <ShoppingBagIcon size="25"  color={"black"} />
+            <ShoppingBagIcon size="25" color={"black"} />
             <Text className="text-lg ">Cart</Text>
           </TouchableOpacity>
         </View>
       </DrawerContentScrollView>
-      <View className="flex justify-center items-center p-2 space-y-2">
-        <TouchableOpacity
-          className="flex justify-center items-center w-full p-2 bg-orange-500"
-          onPress={() => navigation.navigate("SignUp")}
-        >
-          <Text className="  text-white text-lg font-semibold">Sign Up</Text>
-        </TouchableOpacity>
-        {/*  */}
-        <TouchableOpacity
-          className="flex justify-center items-center w-full p-2 bg-gray-200 "
-          onPress={() => navigation.navigate("Login")}
-        >
-          <Text className=" text-lg font-semibold text-gray-700 ">Login</Text>
-        </TouchableOpacity>
+      <View className="flex justify-center items-center p-2 space-y-2 border-t-2 border-gray-100 pt-4">
+        {/* sign out */}
+        {isSignedIn ? (
+          <TouchableOpacity
+            className="flex-row  justify-center items-center space-x-2  w-full p-2 bg-gray-200 "
+            onPress={() => navigation.navigate("Login")}
+          >
+            <ArrowRightStartOnRectangleIcon size="25" color={"black"} />
+            <Text className=" text-lg font-semibold text-gray-700 ">
+              Sign Out
+            </Text>
+          </TouchableOpacity>
+        ) : (
+          <>
+            <TouchableOpacity
+              className="flex justify-center items-center w-full p-2 bg-orange-500"
+              onPress={() => navigation.navigate("SignUp")}
+            >
+              <Text className="  text-white text-lg font-semibold">
+                Sign Up
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              className="flex justify-center items-center w-full p-2 bg-gray-200 "
+              onPress={() => navigation.navigate("Login")}
+            >
+              <Text className=" text-lg font-semibold text-gray-700 ">
+                Login
+              </Text>
+            </TouchableOpacity>
+          </>
+        )}
       </View>
       <View className="flex justify-center items-center p-4">
         <Text className="text-xs color-neutral-500">Senmart</Text>
