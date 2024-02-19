@@ -23,7 +23,7 @@ export default function CartScreen() {
           onPress={() => {
             navigation.goBack();
           }}
-          className="absolute z-10 p-1 shadow top-5 left-2 rounded-full p-2  bg-black/50 "
+          className="absolute z-10 p-1 shadow top-5 left-4 rounded-full p-2  bg-black/50 "
         >
           <ChevronLeftIcon size="28" strokeWidth={3} color="white" />
         </TouchableOpacity>
@@ -45,7 +45,7 @@ export default function CartScreen() {
       </View>
 
       {/* checkout */}
-      <View className="flex-row justify-between items-center p-4 border-t-2  border-gray-100 ">
+      <View className="flex-row justify-between items-center px-4 py-2 border-t-2  border-gray-100 ">
         <View className="flex-row items-center">
           <Text className="font-semibold mr-2">Total</Text>
           <Text className="font-semibold">$ {cartTotal}</Text>
@@ -56,7 +56,7 @@ export default function CartScreen() {
           }}
           className="flex-row items-center bg-orange-500 rounded-full p-4"
         >
-          <Text className="text-white font-lg font-semibold">Checkout</Text>
+          <Text className="text-white text-base font-semibold">Checkout</Text>
           <ChevronRightIcon size={18} strokeWidth={3} color="white" />
         </TouchableOpacity>
       </View>
