@@ -18,9 +18,11 @@ export default function CartScreen() {
   return (
     <View className="flex-1 bg-white">
       {/*  */}
-      <View className="relative py-4 shadow-sm">
+      <View className="relative p-4  mt-4 border-b-2 border-gray-100">
         <TouchableOpacity
-          onPress={navigation.goBack}
+          onPress={() => {
+            navigation.goBack();
+          }}
           className="absolute z-10 p-1 shadow top-5 left-2 rounded-full p-2  bg-black/50 "
         >
           <ChevronLeftIcon size="28" strokeWidth={3} color="white" />
@@ -34,7 +36,7 @@ export default function CartScreen() {
       </View>
 
       {/* cart products */}
-      <View className=" flex-1 mt-2 shadow-md">
+      <View className=" flex-1  shadow-md">
         <ScrollView contentContainerStyle={{ gap: 10 }}>
           {cart.products.map((product) => (
             <CartProduct key={product.id} product={product} />
@@ -45,17 +47,17 @@ export default function CartScreen() {
       {/* checkout */}
       <View className="flex-row justify-between items-center p-4 border-t-2  border-gray-100 ">
         <View className="flex-row items-center">
-          <Text className="text-sm font-semibold mr-2">Total</Text>
-          <Text className="text-sm font-semibold">$ {cartTotal}</Text>
+          <Text className="font-semibold mr-2">Total</Text>
+          <Text className="font-semibold">$ {cartTotal}</Text>
         </View>
         <TouchableOpacity
           onPress={() => {
-            // checkout
+            navigation.navigate("Checkout");
           }}
           className="flex-row items-center bg-orange-500 rounded-full p-4"
         >
-          <Text className="text-white font-semibold">Checkout</Text>
-          <ChevronRightIcon size={18} strokeWidth={2} color="white" />
+          <Text className="text-white font-lg font-semibold">Checkout</Text>
+          <ChevronRightIcon size={18} strokeWidth={3} color="white" />
         </TouchableOpacity>
       </View>
     </View>

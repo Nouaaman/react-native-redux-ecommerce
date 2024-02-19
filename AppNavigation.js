@@ -10,6 +10,7 @@ import SearchScreen from "./screens/SearchScreen";
 import CartScreen from "./screens/CartScreen";
 import ProductScreen from "./screens/ProductScreen";
 import CustomDawer from "./components/CustomDrawer";
+import CheckoutScreen from "./screens/CheckoutScreen";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -35,7 +36,7 @@ const DrawerNavigation = () => (
       component={HomeScreen}
       options={{ title: "Home" }}
     />
-     
+
     {/* <Drawer.Screen name="Settings" component={Settings} /> */}
   </Drawer.Navigator>
 );
@@ -49,9 +50,9 @@ export default function AppNavigation() {
         <Stack.Screen
           name="Cart"
           component={CartScreen}
-          options={{ presentation: "modal", animation: "slide_from_bottom" }}
         />
         <Stack.Screen name="Product" component={ProductScreen} />
+        <Stack.Screen name="Checkout" component={CheckoutScreen} />
         <Stack.Screen
           name="Login"
           component={LoginScreen}
