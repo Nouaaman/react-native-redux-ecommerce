@@ -18,7 +18,7 @@ export default function ProductCard({ product }) {
       onPress={() => {
         navigation.navigate("Product", { ...product });
       }}
-      className="bg-white shadow-sm mb-3 rounded-xl"
+      className="bg-white shadow mb-3 rounded-xl"
     >
       <View style={{ width: width / 2 - 30 }} className="justify-between">
         <Image
