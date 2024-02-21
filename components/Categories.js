@@ -1,18 +1,18 @@
 import { Text, View, TouchableOpacity, FlatList } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchCategories } from "../state/categorySlice";
+import { fetchCategories, setActiveCategory } from "../state/categorySlice";
 import { fetchProductsByCategory } from "../state/productSlice";
 
 export default Categories = () => {
-  const [activeCategory, setActiveCategory] = useState(null);
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.category.categories);
+  const activeCategory = useSelector((state) => state.category.activeCategory);
 
   //handle category selection
   const handleCategorySelection = (index) => {
-    setActiveCategory(index);
     dispatch(fetchProductsByCategory(categories[index]));
+    dispatch(setActiveCategory(index));
   };
 
   useEffect(() => {
