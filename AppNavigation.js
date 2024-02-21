@@ -46,13 +46,22 @@ export default function AppNavigation() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Home" component={DrawerNavigation} />
-        <Stack.Screen name="Search" component={SearchScreen} />
+        <Stack.Screen
+          name="Search"
+          component={SearchScreen}
+          options={{ animation: "slide_from_right" }}
+        />
+        <Stack.Screen name="Product" component={ProductScreen} />
         <Stack.Screen
           name="Cart"
           component={CartScreen}
+          options={{ animation: "slide_from_right" }}
         />
-        <Stack.Screen name="Product" component={ProductScreen} />
-        <Stack.Screen name="Checkout" component={CheckoutScreen} />
+        <Stack.Screen
+          name="Checkout"
+          component={CheckoutScreen}
+          options={{ animation: "slide_from_right" }}
+        />
         <Stack.Screen
           name="Login"
           component={LoginScreen}

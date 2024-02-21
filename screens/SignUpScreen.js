@@ -44,7 +44,7 @@ export default function SignUpScreen() {
               <EnvelopeIcon size="25" color={"gray"} />
             </View>
             <TextInput
-              className="w-full pl-12  border border-orange-500 text-lg h-12 rounded-xl "
+              className="w-full pl-12  border border-gray-300 text-lg h-12 rounded-lg "
               placeholder="E-mail"
               textContentType="emailAddress"
               autoCapitalize="none"
@@ -59,7 +59,7 @@ export default function SignUpScreen() {
               <UserIcon size="25" color={"gray"} />
             </View>
             <TextInput
-              className="w-full pl-12  border border-orange-500 text-lg h-12 rounded-xl "
+              className="w-full pl-12  border border-gray-300 text-lg h-12 rounded-lg "
               placeholder="Username"
               textContentType="username"
               autoCapitalize="none"
@@ -74,7 +74,7 @@ export default function SignUpScreen() {
               <LockClosedIcon size="25" color={"gray"} />
             </View>
             <TextInput
-              className="w-full pl-12  border border-orange-400 text-lg h-12 rounded-xl"
+              className="w-full pl-12  border border-gray-300 text-lg h-12 rounded-lg"
               placeholder="Password"
               textContentType="password"
               secureTextEntry
@@ -88,7 +88,7 @@ export default function SignUpScreen() {
               <LockClosedIcon size="25" color={"gray"} />
             </View>
             <TextInput
-              className="w-full pl-12  border border-orange-400 text-lg h-12 rounded-xl"
+              className="w-full pl-12  border border-gray-300 text-lg h-12 rounded-lg"
               placeholder="Confirm Password"
               textContentType="password"
               secureTextEntry
@@ -125,7 +125,7 @@ export default function SignUpScreen() {
               Sign Up
             </Text>
           </TouchableOpacity>
-          <View className="mt-8 text-center flex flex-row justify-center align-center">
+          <View className="mt-8 text-center flex flex-row justify-center align-center space-x-1">
             <Text> Already have an account?</Text>
             <TouchableOpacity>
               <Text

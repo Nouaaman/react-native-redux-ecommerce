@@ -33,7 +33,7 @@ export default LoginScreen = () => {
       <SafeAreaView className="absolute z-20 w-full flex-row justify-between items-center py-2 ">
         <TouchableOpacity
           className="rounded-2xl p-2 bg-orange-500 "
-          onPress={() => navigation.navigate('Home')}
+          onPress={() => navigation.navigate("Home")}
         >
           <ChevronLeftIcon size="28" strokeWidth={3} color="white" />
         </TouchableOpacity>
@@ -48,7 +48,7 @@ export default LoginScreen = () => {
               <EnvelopeIcon size="25" color={"gray"} />
             </View>
             <TextInput
-              className="w-full pl-12  border border-orange-500 text-lg h-12 rounded-xl "
+              className="w-full pl-12  border border-gray-300 text-lg h-12 rounded-lg "
               placeholder="E-mail"
               textContentType="emailAddress"
               autoCapitalize="none"
@@ -63,7 +63,7 @@ export default LoginScreen = () => {
               <LockClosedIcon size="25" color={"gray"} />
             </View>
             <TextInput
-              className="w-full pl-12  border border-orange-400 text-lg h-12 rounded-xl "
+              className="w-full pl-12  border border-gray-300 text-lg h-12 rounded-lg "
               placeholder="Password"
               textContentType="password"
               secureTextEntry
@@ -95,7 +95,7 @@ export default LoginScreen = () => {
               Login
             </Text>
           </TouchableOpacity>
-          <View className="mt-8 text-center flex flex-row justify-center align-center">
+          <View className="mt-8 text-center flex flex-row justify-center align-center space-x-1">
             <Text> Dont you have and account?</Text>
             <TouchableOpacity>
               <Text

@@ -22,7 +22,7 @@ export default function SearchScreen() {
   const [searchText, setSearchText] = useState("");
 
   return (
-    <View className="bg-gray-100 flex-1">
+    <View className="bg-neutral-50 flex-1">
       <SafeAreaView className=" w-full flex-row justify-between items-center py-2 px-4 space-x-2 ">
         <TouchableOpacity
           className="rounded-2xl p-2 bg-orange-500 "

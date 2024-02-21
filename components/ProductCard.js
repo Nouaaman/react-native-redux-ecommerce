@@ -20,14 +20,16 @@ export default function ProductCard({ product }) {
       }}
       className="bg-white shadow mb-3 rounded-xl"
     >
-      <View style={{ width: width / 2 - 30 }} className="justify-between">
-        <Image
-          // className="rounded-t-xl w-full"
-          style={{ height: width / 2 - 50 }}
-          resizeMode="contain"
-          source={{ uri: product.image }}
-        />
-        <View className="p-2 justify-between">
+      <View style={{ width: width / 2 - 30 }} className="justify-between p-2 space-y-2">
+        <View>
+          <Image
+            // className="rounded-t-xl w-full"
+            style={{ height: width / 2 - 50 }}
+            resizeMode="contain"
+            source={{ uri: product.image }}
+          />
+        </View>
+        <View className="justify-between">
           <Text className=" font-semibold color-neutral-800  mb-1">
             {product.title.length > width / 24
               ? product.title.slice(0, width / 25) + "..."
