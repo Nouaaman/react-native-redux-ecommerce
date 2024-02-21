@@ -1,17 +1,25 @@
 import { Text, View, TouchableOpacity, FlatList } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchCategories } from "../state/categorySlice";
+import { fetchProductsByCategory } from "../state/productSlice";
 
 export default Categories = () => {
-  const [categories, setCategories] = useState([
-    { id: 1, name: "Men's clothes" },
-    { id: 2, name: "Women's clothes" },
-    { id: 3, name: "Accessories" },
-    { id: 4, name: "Jewelry" },
-    { id: 5, name: "Fragrances" },
-  ]);
+  const [activeCategory, setActiveCategory] = useState(null);
+  const dispatch = useDispatch();
+  const categories = useSelector((state) => state.category.categories);
 
-  const [activeCategory, setActiveCategory] = useState(0);
-  
+  //handle category selection
+  const handleCategorySelection = (index) => {
+    setActiveCategory(index);
+    dispatch(fetchProductsByCategory(categories[index]));
+  };
+
+  useEffect(() => {
+    dispatch(fetchCategories());
+    console.log(categories);
+  }, [dispatch]);
+
   return (
     <View className="px-4 mt-2">
       <FlatList
@@ -19,8 +27,8 @@ export default Categories = () => {
         horizontal
         showsHorizontalScrollIndicator={false}
         className="overflow-visible"
-        renderItem={({ item }) => {
-          let isActive = item.id === activeCategory;
+        renderItem={({ item, index }) => {
+          let isActive = index === activeCategory;
           let activeTextClass = isActive ? "text-white" : "text-neutral-700";
           return (
             <TouchableOpacity
@@ -30,11 +38,9 @@ export default Categories = () => {
                   ? "rgb(249 ,115, 22)"
                   : "rgb(229 ,229 ,229)",
               }}
-              onPress={() => setActiveCategory(item.id)}
+              onPress={() => handleCategorySelection(index)}
             >
-              <Text className={"font-semibold " + activeTextClass}>
-                {item.name}
-              </Text>
+              <Text className={"font-semibold " + activeTextClass}>{item}</Text>
             </TouchableOpacity>
           );
         }}

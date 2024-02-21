@@ -3,12 +3,12 @@ import {
   Text,
   TouchableOpacity,
   Image,
-  Button,
-  FlatList,
   ScrollView,
+  Button,
+  ActivityIndicator,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Bars3Icon, MagnifyingGlassIcon } from "react-native-heroicons/outline";
 import { ShoppingBagIcon } from "react-native-heroicons/solid";
 import { useNavigation } from "@react-navigation/native";
@@ -16,13 +16,19 @@ import ProductCard from "../components/ProductCard";
 import { DummyCart, DummyProducts } from "../constants/DummyData";
 import Categories from "../components/Categories";
 
+import { fetchProducts } from "../state/productSlice";
+import { useSelector, useDispatch } from "react-redux";
+
 export default function HomeScreen() {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
-  const [products] = useState(DummyProducts);
-  const [cart, setCart] = useState(DummyCart);
+  const productData = useSelector((state) => state.product);
+  const cartData = useSelector((state) => state.cart);
 
-
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
 
   return (
     <View className="flex-1 bg-neutral-50">
@@ -53,7 +59,7 @@ export default function HomeScreen() {
             >
               <ShoppingBagIcon size="30" color={"#555"} />
               <Text className=" text-sm font-semibold">
-                {cart.products.length}
+                {cartData.cart.products ? cartData.cart.products.length : ""}
               </Text>
             </TouchableOpacity>
           </View>
@@ -69,9 +75,13 @@ export default function HomeScreen() {
           <Text className="text-lg font-semibold">Featured products</Text>
         </View>
         <View className="flex-row justify-around flex-wrap px-4 mt-4">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+          {productData.loading ? (
+            <ActivityIndicator size="large" color={"orange"} />
+          ) : (
+            productData.products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))
+          )}
         </View>
       </ScrollView>
     </View>

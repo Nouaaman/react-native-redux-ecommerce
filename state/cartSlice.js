@@ -1,9 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { api } from "../api"; // Assuming you have an API module for making requests to the database
 
 // Async thunk to fetch the user's cart e
 export const fetchCart = createAsyncThunk("cart/fetchCart", async (userId) => {
-  const response = await api.get(`/cart/${userId}`);
+  const response = await fetch(`/cart/${userId}`);
   return response.data;
 });
 
@@ -11,7 +10,7 @@ export const fetchCart = createAsyncThunk("cart/fetchCart", async (userId) => {
 export const addToCart = createAsyncThunk(
   "cart/addToCart",
   async ({ userId, productId }) => {
-    const response = await api.post(`/cart/${userId}/add`, { productId });
+    const response = await fetch(`/cart/${userId}/add`, { productId });
     return response.data;
   }
 );
@@ -20,7 +19,7 @@ export const addToCart = createAsyncThunk(
 export const deleteFromCart = createAsyncThunk(
   "cart/deleteFromCart",
   async ({ userId, productId }) => {
-    const response = await api.delete(`/cart/${userId}/delete`, {
+    const response = await fetch(`/cart/${userId}/delete`, {
       data: { productId },
     });
     return response.data;
@@ -30,7 +29,7 @@ export const deleteFromCart = createAsyncThunk(
 const cartSlice = createSlice({
   name: "cart",
   initialState: {
-    cart: null,
+    cart: { id: null, userId: null, products: [] },
     loading: false,
     error: null,
   },
@@ -75,5 +74,8 @@ const cartSlice = createSlice({
       });
   },
 });
+
+//export actions
+export const cartActions = cartSlice.actions;
 
 export default cartSlice.reducer;
