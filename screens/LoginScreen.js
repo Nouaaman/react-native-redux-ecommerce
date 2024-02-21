@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Touchable,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
   EnvelopeIcon,
@@ -18,9 +18,11 @@ import { ChevronLeftIcon } from "react-native-heroicons/outline";
 import { useNavigation } from "@react-navigation/native";
 import { fetchSignIn } from "../hooks/authentification/useAuth";
 import Snackbar from "../components/Snackbar";
+import { AuthContext } from "../context/useContext";
 
 export default LoginScreen = () => {
   const navigation = useNavigation();
+  const { isLoading, login, error } = useContext(AuthContext);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [snackbarInfo, setSnackbarInfo] = useState({
@@ -76,10 +78,8 @@ export default LoginScreen = () => {
           <TouchableOpacity
             className=" mt-10 flex justify-center items-center "
             onPress={async () => {
-              const res = await fetchSignIn({ email, password });
-              if (res.data) return navigation.navigate("Home");
-
-              const message = res.error;
+              const res = await login({ email, password });
+              const message = res.message;
               setSnackbarInfo({
                 visible: true,
                 message,
@@ -89,7 +89,23 @@ export default LoginScreen = () => {
                 () => setSnackbarInfo((prev) => ({ ...prev, visible: false })),
                 5000
               );
+              if (res.data) return navigation.navigate("Home");
             }}
+            // onPress={async () => {
+            //   const res = await fetchSignIn({ email, password });
+            //   if (res.data) return navigation.navigate("Home");
+
+            //   const message = res.error;
+            //   setSnackbarInfo({
+            //     visible: true,
+            //     message,
+            //   });
+
+            //   setTimeout(
+            //     () => setSnackbarInfo((prev) => ({ ...prev, visible: false })),
+            //     5000
+            //   );
+            // }}
           >
             <Text className=" w-full py-3 bg-orange-500  rounded-full justify-center items-center text-white text-lg font-bold text-center">
               Login
