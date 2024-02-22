@@ -21,13 +21,6 @@ export default function CartScreen() {
 
   const [cart, setCart] = useState([]);
 
-  const handleCartNavigation = () => {
-    if (userInfo.data?.token !== undefined) {
-      return navigation.navigate("Cart");
-    }
-    return navigation.navigate("Login");
-  };
-
   useEffect(() => {
     dispatch(fetchCart(userInfo.data?.token));
   }, []);

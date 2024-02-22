@@ -5,6 +5,7 @@ import {
   ScrollView,
   TextInput,
   Image,
+  Button,
 } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
@@ -16,6 +17,7 @@ function reduct(total) {
 export default CheckoutScreen = (props) => {
   const navigation = useNavigation();
   const [formIsValid, setFormIsValid] = useState(true);
+  const [promo, setPromo] = useState(null);
   const total = props.route.params;
   console.log(props.route);
   return (
@@ -139,6 +141,24 @@ export default CheckoutScreen = (props) => {
               <Text>$ {Number.parseFloat(total).toFixed(2)}</Text>
               <Text>Free</Text>
             </View>
+          </View>
+          <View className="mt-2 flex-row  space-x-4">
+            <TextInput
+              className="border p-2 border-gray-300 rounded-lg flex-1"
+              placeholder="Promo Code"
+              value={promo}
+              onChangeText={(text) => setPromo(text)}
+            />
+            <TouchableOpacity
+              className="justify-center items-align"
+              onPress={() => {
+                console.log("promo", promo);
+                if (promo == "SENMART") {
+                }
+              }}
+            >
+              <Text className="text-orange-400">Apply</Text>
+            </TouchableOpacity>
           </View>
           {total > 100 ? (
             <View>
