@@ -1,8 +1,9 @@
-import { View, Text, Dimensions, TouchableOpacity ,Image} from "react-native";
+import { View, Text, Dimensions, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { MinusIcon } from "react-native-heroicons/outline";
 
 export default function CartProduct({ product }) {
+  const { userInfo } = useContext(AuthContext);
   const screenWidth = Dimensions.get("window").width;
   return (
     <View className="flex-row justify-between items-center px-4 py-2">

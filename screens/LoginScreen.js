@@ -91,21 +91,6 @@ export default LoginScreen = () => {
               );
               if (res.data) return navigation.navigate("Home");
             }}
-            // onPress={async () => {
-            //   const res = await fetchSignIn({ email, password });
-            //   if (res.data) return navigation.navigate("Home");
-
-            //   const message = res.error;
-            //   setSnackbarInfo({
-            //     visible: true,
-            //     message,
-            //   });
-
-            //   setTimeout(
-            //     () => setSnackbarInfo((prev) => ({ ...prev, visible: false })),
-            //     5000
-            //   );
-            // }}
           >
             <Text className=" w-full py-3 bg-orange-500  rounded-full justify-center items-center text-white text-lg font-bold text-center">
               Login
