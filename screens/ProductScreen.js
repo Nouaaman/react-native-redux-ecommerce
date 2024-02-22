@@ -52,17 +52,25 @@ export default function ProductScreen(props) {
 
   const handleAddToCart = () => {
     if (userInfo.data?.token !== undefined) {
-      dispatch(
-        addToCart(userInfo.data.token, {
-          product,
-          size,
-          quantity,
-        })
-      );
+      const data = {
+        token: userInfo.data?.token,
+        body: {
+          productId: product.id,
+          title: product.title,
+          price: product.price,
+          size: size,
+          quantity: quantity,
+          category: product.category,
+          image: product.image,
+        },
+      };
+
+      dispatch(addToCart(data));
       setSnackbarInfo({
         visible: true,
         message: "Added to cart",
       });
+      return;
     }
     return navigation.navigate("Login");
   };

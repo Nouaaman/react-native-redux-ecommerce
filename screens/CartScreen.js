@@ -14,7 +14,6 @@ import { fetchCart } from "../state/cartSlice";
 
 export default function CartScreen() {
   const { userInfo } = useContext(AuthContext);
-  console.log("user info : ", userInfo);
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -46,10 +45,11 @@ export default function CartScreen() {
 
       <View className=" flex-1  shadow-md">
         <ScrollView contentContainerStyle={{ gap: 10 }}>
-          {cartData.cart.products?.length &&
-            cartData.cart.products.map((product, index) => (
-              <CartProduct key={index} product={product} />
-            ))}
+          {cartData.cart.products?.length
+            ? cartData.cart.products.map((product, index) => (
+                <CartProduct key={index} product={product} />
+              ))
+            : ""}
         </ScrollView>
       </View>
 

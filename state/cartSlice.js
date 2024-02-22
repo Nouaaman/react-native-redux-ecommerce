@@ -10,7 +10,6 @@ export const fetchCart = createAsyncThunk("cart/fetchCart", async (token) => {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await response.json();
-    console.log("data : ", data);
     return data;
   } catch (e) {
     console.log(e);
@@ -18,24 +17,23 @@ export const fetchCart = createAsyncThunk("cart/fetchCart", async (token) => {
 });
 
 // Async thunk to add a product
-export const addToCart = createAsyncThunk(
-  "cart/addToCart",
-  async (token, body) => {
-    const fetchUrl = `${baseUrl}/cart`;
-    try {
-      const response = await fetch(fetchUrl, {
-        method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
-        body: JSON.stringify(body),
-      });
-      const data = await response.json();
-      console.log("data : ", data);
-      return data;
-    } catch (e) {
-      console.log(e);
-    }
+export const addToCart = createAsyncThunk("cart/addToCart", async (data) => {
+  const fetchUrl = `${baseUrl}/cart`;
+  try {
+    const response = await fetch(fetchUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${data?.token}`,
+      },
+      body: JSON.stringify(data?.body),
+    });
+    const res = await response.json();
+    return res;
+  } catch (e) {
+    console.log(e);
   }
-);
+});
 
 // Async thunk to delete a product
 export const deleteFromCart = createAsyncThunk(
