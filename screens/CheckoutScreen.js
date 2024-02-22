@@ -9,9 +9,11 @@ import {
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 
-export default CheckoutScreen = () => {
+export default CheckoutScreen = (props) => {
   const navigation = useNavigation();
   const [formIsValid, setFormIsValid] = useState(true);
+  const total = props.route.params;
+  console.log(props.route);
   return (
     <View className="flex-1 bg-white">
       {/*  */}
@@ -136,7 +138,9 @@ export default CheckoutScreen = () => {
           </View>
           <View className="flex-row justify-between items-center mt-4">
             <Text className="font-bold text-base">To pay</Text>
-            <Text className="font-bold text-base">$ 150</Text>
+            <Text className="font-bold text-base">
+              ${Number.parseFloat(total).toFixed(2)}
+            </Text>
           </View>
         </View>
       </ScrollView>

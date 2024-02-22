@@ -38,8 +38,9 @@ export const addToCart = createAsyncThunk("cart/addToCart", async (data) => {
 // Async thunk to delete a product
 export const deleteFromCart = createAsyncThunk(
   "cart/deleteFromCart",
-  async (token, productId = "") => {
+  async (data) => {
     let fetchUrl = `${baseUrl}/cart`;
+    const productId = data?.productId;
     if (productId) {
       fetchUrl = `${baseUrl}/cart?productId=${productId}`;
     }
@@ -47,7 +48,7 @@ export const deleteFromCart = createAsyncThunk(
       const response = await fetch(fetchUrl, {
         method: "DELETE",
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${data?.token}`,
         },
       });
       const res = await response.json();
@@ -98,7 +99,7 @@ const cartSlice = createSlice({
       })
       .addCase(deleteFromCart.fulfilled, (state, action) => {
         state.loading = false;
-        state.cart = action.payload;
+        state.cart = action.payload.data;
       })
       .addCase(deleteFromCart.rejected, (state, action) => {
         state.loading = false;

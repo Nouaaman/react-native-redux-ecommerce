@@ -1,18 +1,22 @@
 import { View, Text, Dimensions, TouchableOpacity, Image } from "react-native";
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { MinusIcon } from "react-native-heroicons/outline";
-import { deleteFromCart } from "../state/cartSlice";
+import { deleteFromCart, fet } from "../state/cartSlice";
+import { AuthContext } from "../context/useContext";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function CartProduct({ product }) {
   const { userInfo } = useContext(AuthContext);
+  const dispatch = useDispatch();
   const screenWidth = Dimensions.get("window").width;
 
   const handleDeleteFromCart = () => {
     if (userInfo.data?.token !== undefined) {
-      dispatch(
-        deleteFromCart({ token: userInfo.data?.token, productId: product.id })
-      );
+      const data = {
+        token: userInfo.data?.token,
+        productId: product.productId,
+      };
+      dispatch(deleteFromCart(data));
     }
   };
   return (

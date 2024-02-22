@@ -57,11 +57,13 @@ export default function CartScreen() {
       <View className="flex-row justify-between items-center px-4 py-2 border-t-2  border-gray-100 ">
         <View className="flex-row items-center">
           <Text className="font-semibold mr-2">Total</Text>
-          <Text className="font-semibold">$ {cartData.cart.total}</Text>
+          <Text className="font-semibold">
+            $ {Number.parseFloat(cartData.cart.total).toFixed(2)}
+          </Text>
         </View>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("Checkout");
+            navigation.navigate("Checkout", cartData.cart.total);
           }}
           className="flex-row items-center bg-orange-500 rounded-full p-4"
         >

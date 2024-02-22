@@ -13,7 +13,6 @@ import { Bars3Icon, MagnifyingGlassIcon } from "react-native-heroicons/outline";
 import { ShoppingBagIcon } from "react-native-heroicons/solid";
 import { useNavigation } from "@react-navigation/native";
 import ProductCard from "../components/ProductCard";
-import { DummyCart, DummyProducts } from "../constants/DummyData";
 import Categories from "../components/Categories";
 
 import { fetchProducts } from "../state/productSlice";

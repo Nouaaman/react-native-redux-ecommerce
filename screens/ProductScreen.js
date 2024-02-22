@@ -7,7 +7,7 @@ import {
   Modal,
   Pressable,
 } from "react-native";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import {
@@ -24,6 +24,8 @@ import { DummyReviews } from "../constants/DummyData";
 import { AuthContext } from "../context/useContext";
 import { addToCart } from "../state/cartSlice";
 import { useSelector, useDispatch } from "react-redux";
+import { fetchProducts } from "../state/productSlice";
+import { fetchCart } from "../state/cartSlice";
 
 export default function ProductScreen(props) {
   const product = props.route.params;
@@ -39,6 +41,11 @@ export default function ProductScreen(props) {
     visible: false,
     message: "",
   });
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+    dispatch(fetchCart(userInfo.data?.token));
+  }, [dispatch]);
 
   const [reviews] = useState(DummyReviews);
 
