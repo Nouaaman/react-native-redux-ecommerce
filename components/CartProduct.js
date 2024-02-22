@@ -1,10 +1,20 @@
 import { View, Text, Dimensions, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { MinusIcon } from "react-native-heroicons/outline";
+import { deleteFromCart } from "../state/cartSlice";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function CartProduct({ product }) {
   const { userInfo } = useContext(AuthContext);
   const screenWidth = Dimensions.get("window").width;
+
+  const handleDeleteFromCart = () => {
+    if (userInfo.data?.token !== undefined) {
+      dispatch(
+        deleteFromCart({ token: userInfo.data?.token, productId: product.id })
+      );
+    }
+  };
   return (
     <View className="flex-row justify-between items-center px-4 py-2">
       <View className="flex-row items-center">
@@ -35,7 +45,7 @@ export default function CartProduct({ product }) {
         </Text>
         <TouchableOpacity
           onPress={() => {
-            // remove from cart
+            handleDeleteFromCart();
           }}
           className="p-1 bg-orange-500 rounded-full"
         >
