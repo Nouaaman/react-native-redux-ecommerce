@@ -20,9 +20,20 @@ export const fetchCart = createAsyncThunk("cart/fetchCart", async (token) => {
 // Async thunk to add a product
 export const addToCart = createAsyncThunk(
   "cart/addToCart",
-  async ({ userId, product }) => {
-    const response = await fetch(`/cart/${userId}/add`, { product });
-    return response.data;
+  async (token, body) => {
+    const fetchUrl = `${baseUrl}/cart`;
+    try {
+      const response = await fetch(fetchUrl, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+        body: JSON.stringify(body),
+      });
+      const data = await response.json();
+      console.log("data : ", data);
+      return data;
+    } catch (e) {
+      console.log(e);
+    }
   }
 );
 

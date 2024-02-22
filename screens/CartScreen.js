@@ -43,10 +43,10 @@ export default function CartScreen() {
       </View>
 
       {/* cart products */}
-      {console.log("cartData : ", cartData)}
+
       <View className=" flex-1  shadow-md">
         <ScrollView contentContainerStyle={{ gap: 10 }}>
-          {cartData.cart.products.length &&
+          {cartData.cart.products?.length &&
             cartData.cart.products.map((product, index) => (
               <CartProduct key={index} product={product} />
             ))}
