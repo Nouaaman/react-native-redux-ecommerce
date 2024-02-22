@@ -18,17 +18,28 @@ import {
 import { HeartIcon, ShoppingBagIcon } from "react-native-heroicons/solid";
 import { StatusBar } from "expo-status-bar";
 import Reviews from "../components/Reviews";
+import Snackbar from "../components/Snackbar";
+
 import { DummyReviews } from "../constants/DummyData";
 import { AuthContext } from "../context/useContext";
+import { addToCart } from "../state/cartSlice";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function ProductScreen(props) {
   const product = props.route.params;
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const { userInfo } = useContext(AuthContext);
   const [showModal, setShowModal] = useState(false);
   const [size, setSize] = useState("S");
   const [quantity, setQuantity] = useState(1);
+
+  const [snackbarInfo, setSnackbarInfo] = useState({
+    visible: false,
+    message: "",
+  });
+
   const [reviews] = useState(DummyReviews);
 
   const handleMinusBtn = () => {
@@ -41,11 +52,20 @@ export default function ProductScreen(props) {
 
   const handleAddToCart = () => {
     if (userInfo.data?.token !== undefined) {
-      return;
+      dispatch(
+        addToCart(userInfo.data.token, {
+          product,
+          size,
+          quantity,
+        })
+      );
+      setSnackbarInfo({
+        visible: true,
+        message: "Added to cart",
+      });
     }
     return navigation.navigate("Login");
   };
-
   return (
     <View className="flex-1 bg-gray-50">
       <ScrollView
@@ -204,6 +224,21 @@ export default function ProductScreen(props) {
           <PlusIcon size="20" strokeWidth={3} color="white" />
         </View>
       </TouchableOpacity>
+      {snackbarInfo.visible && (
+        <Snackbar
+          message={snackbarInfo.message}
+          actionText="Dismiss"
+          onActionPress={() =>
+            setSnackbarInfo((prev) => ({ ...prev, visible: false }))
+          }
+          duration={2000}
+          position="bottom"
+          backgroundColor="green"
+          textColor="white"
+          actionTextColor="white"
+          containerStyle={{ marginHorizontal: 12 }}
+        />
+      )}
     </View>
   );
 }
