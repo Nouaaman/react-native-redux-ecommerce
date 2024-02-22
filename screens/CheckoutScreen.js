@@ -9,6 +9,10 @@ import {
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 
+function reduct(total) {
+  return (total * 5) / 100;
+}
+
 export default CheckoutScreen = (props) => {
   const navigation = useNavigation();
   const [formIsValid, setFormIsValid] = useState(true);
@@ -132,16 +136,33 @@ export default CheckoutScreen = (props) => {
               <Text className="font-semibold">Shipping</Text>
             </View>
             <View>
-              <Text>$ 150</Text>
+              <Text>$ {Number.parseFloat(total).toFixed(2)}</Text>
               <Text>Free</Text>
             </View>
           </View>
-          <View className="flex-row justify-between items-center mt-4">
-            <Text className="font-bold text-base">To pay</Text>
-            <Text className="font-bold text-base">
-              ${Number.parseFloat(total).toFixed(2)}
-            </Text>
-          </View>
+          {total > 100 ? (
+            <View>
+              <View className="flex-row justify-between items-center mt-4">
+                <Text className="font-bold text-base">Reduction of 5% </Text>
+                <Text className="font-bold text-base">
+                  {reduct(total).toFixed(2)}
+                </Text>
+              </View>
+              <View className="flex-row justify-between items-center mt-4">
+                <Text className="font-bold text-base">To pay</Text>
+                <Text className="font-bold text-base">
+                  {Number.parseFloat(total - reduct(total)).toFixed(2)}
+                </Text>
+              </View>
+            </View>
+          ) : (
+            <View className="flex-row justify-between items-center mt-4">
+              <Text className="font-bold text-base">To pay</Text>
+              <Text className="font-bold text-base">
+                ${Number.parseFloat(total).toFixed(2)}
+              </Text>
+            </View>
+          )}
         </View>
       </ScrollView>
       {/* -------------- Submit button  -----------------*/}
