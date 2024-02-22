@@ -1,5 +1,7 @@
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { AuthContext } from "../context/useContext";
+
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
@@ -11,6 +13,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchCart } from "../state/cartSlice";
 
 export default function CartScreen() {
+  const { userInfo } = useContext(AuthContext);
+  console.log("user info : ", userInfo);
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -18,13 +22,8 @@ export default function CartScreen() {
 
   const [cart, setCart] = useState([]);
 
-  const cartTotal = cartData.cart.items.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  );
-
   useEffect(() => {
-    // dispatch(fetchCart());
+    dispatch(fetchCart(userInfo.data?.token));
   }, []);
 
   return (
@@ -44,11 +43,13 @@ export default function CartScreen() {
       </View>
 
       {/* cart products */}
+      {console.log("cartData : ", cartData)}
       <View className=" flex-1  shadow-md">
         <ScrollView contentContainerStyle={{ gap: 10 }}>
-          {cartData.cart.items.map((product, index) => (
-            <CartProduct key={index} product={product} />
-          ))}
+          {cartData.cart.products.length &&
+            cartData.cart.products.map((product, index) => (
+              <CartProduct key={index} product={product} />
+            ))}
         </ScrollView>
       </View>
 
@@ -56,7 +57,7 @@ export default function CartScreen() {
       <View className="flex-row justify-between items-center px-4 py-2 border-t-2  border-gray-100 ">
         <View className="flex-row items-center">
           <Text className="font-semibold mr-2">Total</Text>
-          <Text className="font-semibold">$ {cartTotal}</Text>
+          <Text className="font-semibold">$ {cartData.cart.total}</Text>
         </View>
         <TouchableOpacity
           onPress={() => {

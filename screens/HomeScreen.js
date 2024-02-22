@@ -69,7 +69,7 @@ export default function HomeScreen() {
             >
               <ShoppingBagIcon size="30" color={"#555"} />
               <Text className=" text-sm font-semibold">
-                {cartData.cart.items ? cartData.cart.items.length : ""}
+                {cartData.cart.products ? cartData.cart.products.length : ""}
               </Text>
             </TouchableOpacity>
           </View>

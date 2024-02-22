@@ -1,9 +1,20 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+const baseUrl = process.env.EXPO_PUBLIC_API_URL;
 
 // Async thunk to fetch the user's cart e
-export const fetchCart = createAsyncThunk("cart/fetchCart", async (userId) => {
-  const response = await fetch(`/cart/${userId}`);
-  return response.data;
+export const fetchCart = createAsyncThunk("cart/fetchCart", async (token) => {
+  const fetchUrl = `${baseUrl}/cart`;
+  try {
+    const response = await fetch(fetchUrl, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const data = await response.json();
+    console.log("data : ", data);
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 // Async thunk to add a product
@@ -29,23 +40,7 @@ export const deleteFromCart = createAsyncThunk(
 const cartSlice = createSlice({
   name: "cart",
   initialState: {
-    cart: {
-      id: "3435353535",
-      userId: 1,
-      items: [
-        {
-          productId: 1,
-          quantity: 3,
-          size: "S",
-          id: 1,
-          title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-          price: 109.95,
-          image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-          quantity: 4,
-          size: "M",
-        },
-      ],
-    },
+    cart: {},
     loading: false,
     error: null,
   },
@@ -58,7 +53,7 @@ const cartSlice = createSlice({
       })
       .addCase(fetchCart.fulfilled, (state, action) => {
         state.loading = false;
-        state.cart = action.payload;
+        state.cart = action.payload.data;
       })
       .addCase(fetchCart.rejected, (state, action) => {
         state.loading = false;
