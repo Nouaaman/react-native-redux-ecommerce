@@ -8,7 +8,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Bars3Icon, MagnifyingGlassIcon } from "react-native-heroicons/outline";
 import { ShoppingBagIcon } from "react-native-heroicons/solid";
 import { useNavigation } from "@react-navigation/native";
@@ -18,6 +18,7 @@ import Categories from "../components/Categories";
 
 import { fetchProducts } from "../state/productSlice";
 import { useSelector, useDispatch } from "react-redux";
+import { AuthContext } from "../context/useContext";
 
 export default function HomeScreen() {
   const navigation = useNavigation();
@@ -26,9 +27,18 @@ export default function HomeScreen() {
   const productData = useSelector((state) => state.product);
   const cartData = useSelector((state) => state.cart);
 
+  const { userInfo } = useContext(AuthContext);
+
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
+
+  const handleCartNavigation = () => {
+    if (userInfo.data?.token !== undefined) {
+      return navigation.navigate("Cart");
+    }
+    return navigation.navigate("Login");
+  };
 
   return (
     <View className="flex-1 bg-neutral-50">
@@ -55,7 +65,7 @@ export default function HomeScreen() {
             </TouchableOpacity>
             <TouchableOpacity
               className="flex-row justify-center items-start"
-              onPress={() => navigation.navigate("Cart")}
+              onPress={() => handleCartNavigation()}
             >
               <ShoppingBagIcon size="30" color={"#555"} />
               <Text className=" text-sm font-semibold">
