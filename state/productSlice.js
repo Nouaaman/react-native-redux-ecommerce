@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 // Async thunk to fetch products
 export const fetchProducts = createAsyncThunk(
-  "products/fetchProducts",
+  "product/fetchProducts",
   async () => {
     const response = await fetch("https://fakestoreapi.com/products");
     const data = await response.json();
@@ -12,7 +12,7 @@ export const fetchProducts = createAsyncThunk(
 
 //fetch product by id
 export const fetchProductById = createAsyncThunk(
-  "products/fetchProductById",
+  "product/fetchProductById",
   async (id) => {
     const response = await fetch(`https://fakestoreapi.com/products/${id}`);
     const data = await response.json();
@@ -22,7 +22,7 @@ export const fetchProductById = createAsyncThunk(
 
 //fetch products by category
 export const fetchProductsByCategory = createAsyncThunk(
-  "products/fetchProductsByCategory",
+  "product/fetchProductsByCategory",
   async (category) => {
     const response = await fetch(
       `https://fakestoreapi.com/products/category/${category}`
@@ -34,6 +34,7 @@ export const fetchProductsByCategory = createAsyncThunk(
 
 const initialState = {
   products: [],
+  product: {},
   loading: false,
   error: null,
 };
@@ -64,7 +65,7 @@ const productSlice = createSlice({
       })
       .addCase(fetchProductById.fulfilled, (state, action) => {
         state.loading = false;
-        state.products = action.payload;
+        state.product = action.payload;
       })
       .addCase(fetchProductById.rejected, (state, action) => {
         state.loading = false;

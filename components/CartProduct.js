@@ -17,7 +17,7 @@ export default function CartProduct({ product }) {
         </View>
         <View className="ml-2">
           <Text className="text-sm font-semibold " style={{}}>
-            {product.title.length > screenWidth / 25
+            {product.title?.length > screenWidth / 25
               ? product.title.slice(0, screenWidth / 25) + "..."
               : product.title}
           </Text>

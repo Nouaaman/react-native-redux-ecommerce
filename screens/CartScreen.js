@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
@@ -7,39 +7,47 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { DummyCart } from "../constants/DummyData";
 import CartProduct from "../components/CartProduct";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchCart } from "../state/cartSlice";
 
 export default function CartScreen() {
   const navigation = useNavigation();
-  const [cart, setCart] = useState(DummyCart);
-  const cartTotal = cart.products.reduce(
-    (acc, product) => acc + product.price * product.quantity,
+  const dispatch = useDispatch();
+
+  const cartData = useSelector((state) => state.cart);
+
+  const [cart, setCart] = useState([]);
+
+  const cartTotal = cartData.cart.items.reduce(
+    (acc, item) => acc + item.price * item.quantity,
     0
   );
+
+  useEffect(() => {
+    // dispatch(fetchCart());
+  }, []);
+
   return (
     <View className="flex-1 bg-white">
       {/*  */}
-      <View className="relative p-4  mt-4 border-b-2 border-gray-100">
+      <View className="relative flex p-4 pb-8  mt-8 border-b-2 border-gray-100 items-center justify-center  ">
         <TouchableOpacity
           onPress={() => {
             navigation.goBack();
           }}
-          className="absolute z-10 p-1 shadow top-5 left-4 rounded-full p-2  bg-black/50 "
+          className="absolute z-10 p-1 shadow top-2 left-4 rounded-full p-2  bg-black/50 "
         >
           <ChevronLeftIcon size="28" strokeWidth={3} color="white" />
         </TouchableOpacity>
-        <View>
-          <Text className="text-center font-bold text-2xl">
-            Cart ({cart.products.length})
-          </Text>
-          <Text className="text-center text-gray-500">Alexa Doe</Text>
-        </View>
+
+        <Text className="text-center font-bold text-2xl">Cart</Text>
       </View>
 
       {/* cart products */}
       <View className=" flex-1  shadow-md">
         <ScrollView contentContainerStyle={{ gap: 10 }}>
-          {cart.products.map((product) => (
-            <CartProduct key={product.id} product={product} />
+          {cartData.cart.items.map((product, index) => (
+            <CartProduct key={index} product={product} />
           ))}
         </ScrollView>
       </View>

@@ -17,7 +17,6 @@ export default Categories = () => {
 
   useEffect(() => {
     dispatch(fetchCategories());
-    console.log(categories);
   }, [dispatch]);
 
   return (

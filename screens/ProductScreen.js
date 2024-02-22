@@ -7,7 +7,7 @@ import {
   Modal,
   Pressable,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import {
@@ -19,11 +19,13 @@ import { HeartIcon, ShoppingBagIcon } from "react-native-heroicons/solid";
 import { StatusBar } from "expo-status-bar";
 import Reviews from "../components/Reviews";
 import { DummyReviews } from "../constants/DummyData";
+import { AuthContext } from "../context/useContext";
 
 export default function ProductScreen(props) {
   const product = props.route.params;
   const navigation = useNavigation();
 
+  const { userInfo } = useContext(AuthContext);
   const [showModal, setShowModal] = useState(false);
   const [size, setSize] = useState("S");
   const [quantity, setQuantity] = useState(1);
@@ -35,6 +37,13 @@ export default function ProductScreen(props) {
 
   const handlePlusBtn = () => {
     setQuantity(quantity + 1);
+  };
+
+  const handleAddToCart = () => {
+    if (userInfo.data?.token !== undefined) {
+      return;
+    }
+    return navigation.navigate("Login");
   };
 
   return (
@@ -183,7 +192,7 @@ export default function ProductScreen(props) {
       {/* add to cart */}
       <TouchableOpacity
         className="absolute right-4 bottom-4 rounded-full flex justify-center items-center self-start p-5 bg-orange-500"
-        onPress={() => {}}
+        onPress={() => handleAddToCart()}
         style={{
           shadowOffset: { width: 0, height: 8 },
           shadowOpacity: 0.4,

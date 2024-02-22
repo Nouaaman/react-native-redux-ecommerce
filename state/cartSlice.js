@@ -9,8 +9,8 @@ export const fetchCart = createAsyncThunk("cart/fetchCart", async (userId) => {
 // Async thunk to add a product
 export const addToCart = createAsyncThunk(
   "cart/addToCart",
-  async ({ userId, productId }) => {
-    const response = await fetch(`/cart/${userId}/add`, { productId });
+  async ({ userId, product }) => {
+    const response = await fetch(`/cart/${userId}/add`, { product });
     return response.data;
   }
 );
@@ -29,7 +29,23 @@ export const deleteFromCart = createAsyncThunk(
 const cartSlice = createSlice({
   name: "cart",
   initialState: {
-    cart: { id: null, userId: null, products: [] },
+    cart: {
+      id: "3435353535",
+      userId: 1,
+      items: [
+        {
+          productId: 1,
+          quantity: 3,
+          size: "S",
+          id: 1,
+          title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+          price: 109.95,
+          image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+          quantity: 4,
+          size: "M",
+        },
+      ],
+    },
     loading: false,
     error: null,
   },
@@ -76,6 +92,6 @@ const cartSlice = createSlice({
 });
 
 //export actions
-export const cartActions = cartSlice.actions;
+export const { cartData } = cartSlice.actions;
 
 export default cartSlice.reducer;
