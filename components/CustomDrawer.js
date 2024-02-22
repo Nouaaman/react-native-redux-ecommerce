@@ -17,6 +17,12 @@ export default function CustomDawer(props) {
   const navigation = useNavigation();
   const [isSignedIn, setSignedIn] = React.useState(false);
 
+  const handleCartNavigation = () => {
+    if (userInfo.data?.token !== undefined) {
+      return navigation.navigate("Cart");
+    }
+    return navigation.navigate("Login");
+  };
   useEffect(() => {
     if (userInfo.data?.token !== undefined) {
       setSignedIn(true);
@@ -54,7 +60,7 @@ export default function CustomDawer(props) {
           {/*  */}
           <TouchableOpacity
             className="flex-row items-center p-4 py-2 space-x-2"
-            onPress={() => navigation.navigate("Cart")}
+            onPress={() => handleCartNavigation()}
           >
             <ShoppingBagIcon size="25" color={"black"} />
             <Text className="text-lg ">Cart</Text>

@@ -21,6 +21,13 @@ export default function CartScreen() {
 
   const [cart, setCart] = useState([]);
 
+  const handleCartNavigation = () => {
+    if (userInfo.data?.token !== undefined) {
+      return navigation.navigate("Cart");
+    }
+    return navigation.navigate("Login");
+  };
+
   useEffect(() => {
     dispatch(fetchCart(userInfo.data?.token));
   }, []);
@@ -45,8 +52,8 @@ export default function CartScreen() {
 
       <View className=" flex-1  shadow-md">
         <ScrollView contentContainerStyle={{ gap: 10 }}>
-          {cartData.cart.products?.length
-            ? cartData.cart.products.map((product, index) => (
+          {cartData.cart?.products?.length
+            ? cartData.cart?.products.map((product, index) => (
                 <CartProduct key={index} product={product} />
               ))
             : ""}
@@ -58,7 +65,7 @@ export default function CartScreen() {
         <View className="flex-row items-center">
           <Text className="font-semibold mr-2">Total</Text>
           <Text className="font-semibold">
-            $ {Number.parseFloat(cartData.cart.total).toFixed(2)}
+            $ {Number.parseFloat(cartData.cart?.total).toFixed(2)}
           </Text>
         </View>
         <TouchableOpacity
