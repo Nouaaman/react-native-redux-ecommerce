@@ -1,9 +1,9 @@
 
-Workspace: # React Native Redux E-commerce
+# React Native Redux E-commerce
 
 This is a React Native e-commerce application built with Redux for state management. The app allows users to browse products, add them to the cart, and proceed to checkout. It also includes user authentication features such as login and signup.
 
-## Features
+## Key Features
 
 - Browse products by categories
 - Search for products
@@ -15,12 +15,10 @@ This is a React Native e-commerce application built with Redux for state managem
 
 ## Demo
 
-<div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;">
-    <img src="assets/demo/demo.gif" alt="Demo GIF" width="200" />
-    <img src="assets/demo/demo1.jpg" alt="demo 1" width="200" />
-    <img src="assets/demo/demo2.jpg" alt="demo 2" width="200" />
-    <img src="assets/demo/demo3.jpg" alt="demo 3" width="200" />
-</div>
+<img src="assets/demo/demo.gif" width="320" alt="Demo GIF" />
+<img src="assets/demo/demo1.jpg" width="320" alt="demo 1" />
+<img src="assets/demo/demo2.jpg" width="320" alt="demo 2" />
+<img src="assets/demo/demo3.jpg" width="320" alt="demo 3" />
 
 ## Installation
 
@@ -93,14 +91,6 @@ This is a React Native e-commerce application built with Redux for state managem
 - Remove products from the cart
 - User authentication (login, signup, logout)
 - Checkout process
-
-## Demo
-
-![Home Screen](assets/demo/home_screen.png)
-
-### Demo GIF
-
-![Demo GIF](assets/demo/demo.gif)
 
 ## Installation
 
