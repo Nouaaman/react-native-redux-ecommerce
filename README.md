@@ -15,10 +15,12 @@ This is a React Native e-commerce application built with Redux for state managem
 
 ## Demo
 
-![Demo GIF](assets/demo/demo.gif)
-![demo 1](assets/demo/demo1.jpg)
-![demo 2](assets/demo/demo2.jpg)
-![demo 3](assets/demo/demo3.jpg)
+<div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center;">
+    <img src="assets/demo/demo.gif" alt="Demo GIF" width="200" />
+    <img src="assets/demo/demo1.jpg" alt="demo 1" width="200" />
+    <img src="assets/demo/demo2.jpg" alt="demo 2" width="200" />
+    <img src="assets/demo/demo3.jpg" alt="demo 3" width="200" />
+</div>
 
 ## Installation
 
